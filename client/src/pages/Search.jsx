@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CardListingItem from "../components/CardListingItem";
 
 export default function Search() {
   const [sidebarData, setSidebarData] = useState({
@@ -14,7 +15,6 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [listings, setListings] = useState([]);
   const navigate = useNavigate();
-  console.log(listings);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -140,7 +140,7 @@ export default function Search() {
             </div>
             <div className="flex gap-2 mt-1">
               <input
-                id="sell"
+                id="sale"
                 type="checkbox"
                 className="w-5"
                 checked={sidebarData.type === "sale"}
@@ -206,6 +206,21 @@ export default function Search() {
         <h1 className="text-3xl font-semibold border-b-2 p-3 text-slate-700 mt-5">
           Listing results:
         </h1>
+        <div className="p-7 flex flex-col sm:flex-row flex-wrap gap-4">
+          {!loading && listings.length === 0 && (
+            <p className="text-2xl text-slate-700">No listing found!</p>
+          )}
+          {loading && (
+            <p className="text-2xl text-slate-700 text-center w-full">
+              Loading...
+            </p>
+          )}
+          {!loading &&
+            listings &&
+            listings.map((listing) => {
+              return <CardListingItem key={listing._id} listing={listing} />;
+            })}
+        </div>
       </div>
     </div>
   );

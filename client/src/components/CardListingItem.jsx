@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
 
 export default function CardListingItem({ listing }) {
-  console.log(listing);
   return (
-    <div className="bg-white shadow-md hover:shadow-lg transition-all duration-300 ease-out overflow-hidden rounded-lg w-full sm:w-[330px]">
+    <div className="bg-white shadow-md hover:shadow-lg transition-all duration-300 ease-out overflow-hidden rounded-lg w-full">
       <Link to={`/listing/${listing._id}`}>
         <img
           src={listing.imageUrls[0]}

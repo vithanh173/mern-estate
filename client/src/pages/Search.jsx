@@ -115,7 +115,6 @@ export default function Search() {
     console.log(searchQuery);
     const res = await fetch(`/api/listing/get?${searchQuery}`);
     const data = await res.json();
-    console.log(data);
     if (data.length < 9) {
       setShowMore(false);
     }
